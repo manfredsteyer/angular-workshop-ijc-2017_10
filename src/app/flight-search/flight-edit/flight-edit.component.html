@@ -1,0 +1,34 @@
+<div class="card">
+<div class="header">
+  <h1 class="title">Flight Edit</h1>
+</div>
+<div class="content">
+
+    <div *ngIf="!flight">Loading ...</div>
+
+    <form *ngIf="flight">
+        <div class="form-group">
+            <label>Id:</label>
+            <input name="id" [(ngModel)]="flight.id" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>From:</label>
+            <input name="from" [(ngModel)]="flight.from" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>To:</label>
+            <input name="to" [(ngModel)]="flight.to" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Date:</label>
+            <input name="date" [(ngModel)]="flight.date" class="form-control">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" (click)="save()">Save</button>
+        </div>
+    
+      </form>      
+
+</div>
+</div>

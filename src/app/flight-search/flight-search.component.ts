@@ -7,14 +7,23 @@ import { Component, OnInit } from '@angular/core';
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
-  providers: [FlightService]
+//  providers: [FlightService]
 })
 export class FlightSearchComponent implements OnInit {
 
   from: string;
   to: string;
-  flights: Array<Flight> = [];
+  
+  get flights() {  // *ngIf="let f of flights"
+    return this.flightService.flights;
+  }
+
   selectedFlight: Flight;
+
+  basket: object = {
+    "3": true,
+    "5": true
+  };
 
   constructor(private flightService: FlightService) { 
     console.debug('Best wishes from the Component!');
@@ -31,15 +40,9 @@ export class FlightSearchComponent implements OnInit {
     
     this
       .flightService
-      .find(this.from, this.to)
-      .subscribe(
-        flights => {
-          this.flights = flights;
-        },
-        err => {
-          console.error('Error during loading flights', err);
-        }
-      )
+      .load(this.from, this.to);
+
+    
 
   }
 
